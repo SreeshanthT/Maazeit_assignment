@@ -1,0 +1,12 @@
+{% extends 'index_page.html' %}
+{% load static %}
+{% block title %}Employee{% endblock %}
+
+{% block container %}
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{form_title}}</h5>
+            {% include 'main_forms.html' with form_method='post' %}
+        </div>
+    </div>
+{% endblock %}

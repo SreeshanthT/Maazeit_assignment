@@ -1,0 +1,63 @@
+{% load static %}
+
+  <!-- Vendor JS Files -->
+  <script src="{% static '' %}assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="{% static '' %}assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="{% static '' %}assets/vendor/chart.js/chart.min.js"></script>
+  <script src="{% static '' %}assets/vendor/echarts/echarts.min.js"></script>
+  <script src="{% static '' %}assets/vendor/quill/quill.min.js"></script>
+  <script src="{% static '' %}assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="{% static '' %}assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="{% static '' %}assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static '' %}assets/js/main.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="{% static 'assets/vendor/toastr/build/toastr.min.js' %}"></script>
+  <script>
+    $(document).ready(function(){
+        document.documentElement.style.setProperty('--success', '#198754');
+        document.documentElement.style.setProperty('--danger', '#dc3545');
+        document.documentElement.style.setProperty('--info', '#0dcaf0');
+        document.documentElement.style.setProperty('--warning', '#ffc107');
+        $('.nav-item').children('a[href="{{ request.path }}"]').removeClass('collapsed')
+        $('.nav-item').children('a[data-id="{{ nav_item }}"]').removeClass('collapsed')
+        $('.href-btn').on('click',function(){
+            window.location.href = $(this).data('href')
+        })
+    })
+  </script>
+  <script>
+    toastr.options = {
+      "closeButton": false,
+      "debug": true,
+      "newestOnTop": false,
+      "progressBar": true,
+      "positionClass": "toast-bottom-left",
+      "preventDuplicates": false,
+      "onclick": null,
+      "showDuration": "1000",
+      "hideDuration": "1000",
+      "timeOut": "5000",
+      "extendedTimeOut": "1000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "slideDown",
+      "hideMethod": "slideUp"
+    };
+    
+    '{% for message in messages %}'
+        if ("{{ message.tags }}" === "success") {
+        toastr.success("{{ message|safe }}")
+        }
+        if ("{{ message.tags }}" === "error") {
+        toastr.error("{{ message|safe }}")
+        }
+        if ("{{ message.tags }}" === "info") {
+        toastr.info("{{ message|safe }}")
+        }
+        if ("{{ message.tags }}" === "warning") {
+        toastr.warning("{{ message|safe }}")
+        }
+    '{% endfor %}'
+  </script>

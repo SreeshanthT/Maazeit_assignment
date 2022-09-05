@@ -22,7 +22,7 @@ class BaseContent(LifecycleModelMixin, models.Model):
     ))
     created_on = models.DateTimeField(auto_now_add=True)
     modified_on = models.DateTimeField(auto_now=True)
-    display_order = models.PositiveIntegerField(default=0)
+    # display_order = models.PositiveIntegerField(default=0)
     objects = CustomQuerySet.as_manager()
 
     class Meta:

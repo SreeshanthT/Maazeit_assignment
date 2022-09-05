@@ -1,0 +1,19 @@
+<form class="row g-3" method="{{form_method}}">
+
+    {% if form_method == 'post' %}{% csrf_token %}{% endif %}
+
+    {% for field in form %}
+    <div class="col-md-6">
+        <div class="form-floating">
+            {{field}}
+            <label for="floatingName">{{field.label}} {%if field.field.required%}*{% endif %}</label>
+            <div class="invalid-feedback">{{field.errors|safe}}</div>
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="text-center"> 
+        <button type="submit" class="btn btn-primary">Submit</button> 
+        <button type="reset" class="btn btn-secondary">Reset</button>
+    </div>
+</form>

@@ -1,0 +1,51 @@
+{% extends 'index_page.html' %}
+{% load static %}
+{% block title %}Employee{% endblock %}
+
+
+{% block container %}
+
+
+
+<div class="card p-2">
+    <h5 class="card-title">Filters</h5>
+    <div class="card-body">
+        <a class="btn btn-primary float-right" href="{% url 'create-employee' %}">Add</a>
+    </div>
+</div>
+
+<div class="card p-2">
+    <h5 class="card-title">Employees</h5>
+    <div class="card-body">
+        <table table id="basic-datatable" class="table dt-responsive nowrap w-100">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Employee</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for obj in employees %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{obj.full_name}} {{obj.last_name}}</td>
+                    <td>{{obj.phone}}</td>
+                    <td>{{obj.email}}</td>
+                    <td>{% if obj.active == 1 %}Active{% endif %}</td>
+                    <td>
+                        <button class="btn btn-sm btn-light href-btn" data-href="{% url 'update-employee' obj.id %}">
+                            Edit
+                        </button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
